@@ -9,7 +9,8 @@ export class ChatGptService {
     private readonly configService: ConfigService,
   ) {}
 
-  private apiUrl = this.configService.get<string>('OPENAPI_URL');
+  private readonly apiUrl = this.configService.get<string>('OPENAPI_URL');
+  private readonly apiKey = this.configService.get<string>('OPENAPI_KEY');
 
   getAnswer(message: string): Promise<any> {
     const response = this.httpService.axiosRef
@@ -27,9 +28,7 @@ export class ChatGptService {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.configService.get<string>(
-              'OPENAPI_KEY',
-            )}`,
+            Authorization: `Bearer ${this.apiKey}`,
           },
         },
       )
