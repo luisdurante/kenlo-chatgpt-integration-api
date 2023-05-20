@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
+import { Interaction } from './schemas/interaction.schema';
 
 @Controller('questions')
 export class QuestionsController {
@@ -15,14 +16,14 @@ export class QuestionsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createQuestionDto: CreateQuestionDto) {
+  create(@Body() createQuestionDto: CreateQuestionDto): Promise<Interaction> {
     return this.questionsService.create(createQuestionDto);
   }
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll() {
-    const questions = await this.questionsService.findAll();
-    return { questions };
+  async findAll(): Promise<any> {
+    const interactions = await this.questionsService.findAll();
+    return { interactions };
   }
 }
