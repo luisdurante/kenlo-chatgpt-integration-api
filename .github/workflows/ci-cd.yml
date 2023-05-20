@@ -122,5 +122,5 @@ jobs:
               DB_USER=${{ secrets.DB_USER }}
               DB_PASSWORD=${{ secrets.DB_PASSWORD }}
               DB_NAME=${{ secrets.DB_NAME }}
-              OPENAPI_KEY=${{ secrets.OPENAPI_KEY }}
-              OPENAPI_URL=${{ secrets.OPENAPI_URL }}
+              OPENAI_KEY=${{ secrets.OPENAI_KEY }}
+              OPENAI_URL=${{ secrets.OPENAI_URL }}
