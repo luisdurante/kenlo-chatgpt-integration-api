@@ -8,7 +8,8 @@ import { Interaction } from './schemas/interaction.schema';
 @Injectable()
 export class QuestionsService {
   constructor(
-    @InjectModel(Interaction.name) private clientModel: Model<Interaction>,
+    @InjectModel(Interaction.name)
+    private interactionsModel: Model<Interaction>,
     private readonly chatGptService: ChatGptService,
   ) {}
 
@@ -18,7 +19,7 @@ export class QuestionsService {
     );
 
     if (response?.choices && response.choices.length) {
-      return this.clientModel.create({
+      return this.interactionsModel.create({
         message: createQuestionDto.message,
         answer: response.choices[0].message.content,
       });
@@ -26,7 +27,7 @@ export class QuestionsService {
   }
 
   findAll(): Promise<Interaction[]> {
-    return this.clientModel
+    return this.interactionsModel
       .find({ email: { $exists: false } }, { __v: 0 })
       .exec();
   }
