@@ -15,7 +15,7 @@ export class ChatGptService {
   getAnswer(message: string): Promise<any> {
     const response = this.httpService.axiosRef
       .post(
-        this.apiUrl,
+        `${this.apiUrl}/chat/completions`,
         {
           model: 'gpt-3.5-turbo',
           messages: [
