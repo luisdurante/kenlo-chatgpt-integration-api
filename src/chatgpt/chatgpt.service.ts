@@ -9,8 +9,8 @@ export class ChatGptService {
     private readonly configService: ConfigService,
   ) {}
 
-  private readonly apiUrl = this.configService.get<string>('OPENAPI_URL');
-  private readonly apiKey = this.configService.get<string>('OPENAPI_KEY');
+  private readonly apiUrl = this.configService.get<string>('OPENAI_URL');
+  private readonly apiKey = this.configService.get<string>('OPENAI_KEY');
 
   getAnswer(message: string): Promise<any> {
     const response = this.httpService.axiosRef
